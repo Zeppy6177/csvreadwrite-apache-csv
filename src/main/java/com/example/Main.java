@@ -204,13 +204,15 @@ public class Main {
             // getting manufacturer for the product
             newRecord.add(getUserInput("Manufacturer: "));
 
+            // writing to the file
             for (int i = 0; i < newRecord.size(); i++) {
                 if (i != newRecord.size() - 1)
                     writer.write('"' + newRecord.get(i) + "\", ");
                 else
                     writer.write('"' + newRecord.get(i) + '"');
             }
-
+            
+            // writing a new line to the file
             writer.write("\r\n");
         }
         catch (Exception e)
@@ -227,16 +229,21 @@ public class Main {
         }
     }
 
+    // method to print csv
     public static void printCSV(String filePath)
     {
+        // creating a parser
         CSVParser csvParser = null;
         
         try
         {
+            // reading the file
             Reader reader = new FileReader(filePath);
 
+            // parsing the file
             csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
 
+            // printing the csv file
             for (CSVRecord csvRecord : csvParser) {
                 for(String test : csvRecord)
                 {
@@ -259,5 +266,6 @@ public class Main {
         printCSV(filePath);
    
         scanner.close();
+        System.exit(0);
     }
 }
